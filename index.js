@@ -1,24 +1,17 @@
 const path = require('path');
 const resolve = require('resolve');
 
-module.exports = function({
-  extensions,
-  paths,
-  moduleDirectory,
-  packageFilter
-}) {
+module.exports = function(options) {
   return {
-    resolve(filename, source, options) {
-      return resolve.sync(filename, {
+    resolve(filename, source, pugOptions) {
+      return resolve.sync(filename, Object.assign({
         basedir: path.dirname(source),
-        extensions: extensions || ['.pug', '.jade'],
-        paths,
-        moduleDirectory,
-        packageFilter: packageFilter || pkg =>
+        extensions: ['.pug', '.jade'],
+        packageFilter: pkg =>
           Object.assign({}, pkg, {
             main: pkg.pug || pkg.main
           })
-      });
+      }, options));
     }
-  }
-}
+  };
+};
