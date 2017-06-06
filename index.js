@@ -10,10 +10,11 @@ module.exports = function(options) {
       return resolve.sync(resolvePath, Object.assign({
         basedir: path.dirname(source),
         extensions: ['.pug', '.jade'],
-        packageFilter: pkg =>
-          Object.assign({}, pkg, {
+        packageFilter(pkg) {
+          return Object.assign({}, pkg, {
             main: pkg.pug || pkg.main
-          })
+          });
+        }
       }, options));
     }
   };
