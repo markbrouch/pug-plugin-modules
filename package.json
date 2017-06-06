@@ -1,6 +1,6 @@
 {
   "name": "pug-plugin-modules",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Pug plugin for resolving templates in node_modules",
   "main": "index.js",
   "repository": "https://github.com/markbrouch/pug-plugin-modules.git",
