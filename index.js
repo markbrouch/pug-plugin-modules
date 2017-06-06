@@ -5,7 +5,17 @@ module.exports = function(options) {
   return {
     resolve(filename, source, pugOptions) {
       const file = path.parse(filename);
-      const resolvePath = file.dir ? `${file.dir}/${file.name}` : file.name;
+
+      // Strip out extension that is automatically added by Pug
+      file.ext = '';
+      file.base = file.name;
+
+      let resolvePath;
+      if (!file.dir && file.dir[0] !== path.sep && file.dir[0] !== '.') {
+        resolvePath = file.name;
+      } else {
+        resolvePath = path.format(file);
+      }
 
       return resolve.sync(resolvePath, Object.assign({
         basedir: path.dirname(source),
