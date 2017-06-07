@@ -11,9 +11,15 @@ module.exports = function(options) {
       file.base = file.name;
 
       let resolvePath;
+      let basedir = path.dirname(source);
       if (!file.dir && file.dir[0] !== path.sep && file.dir[0] !== ".") {
         resolvePath = file.name;
       } else {
+        if (file.dir[0] === path.sep) {
+          file.dir = `.${file.dir}`;
+          file.root = `.${file.root}`;
+          basedir = pugOptions.basedir;
+        }
         resolvePath = path.format(file);
       }
 
@@ -21,7 +27,7 @@ module.exports = function(options) {
         resolvePath,
         Object.assign(
           {
-            basedir: path.dirname(source),
+            basedir,
             extensions: [".pug", ".jade"],
             packageFilter(pkg) {
               return Object.assign({}, pkg, {
