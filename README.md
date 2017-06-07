@@ -1,3 +1,6 @@
+[![npm](https://img.shields.io/npm/v/pug-plugin-modules.svg?style=flat-square)](https://www.npmjs.com/package/pug-plugin-modules)
+![npm](https://img.shields.io/npm/l/pug-plugin-modules.svg?style=flat-square)
+
 # pug-plugin-modules
 Pug plugin for resolving templates in node_modules
 
